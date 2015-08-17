@@ -1,13 +1,8 @@
-var Megatask = {
-  author: "Davey",
-  hisDeal: "Who the heck knows?",
-  newStudentForm: $('#new_student_form'),
-  submitHandler: function(ev) {
+var Megaroster = function() {
+  this.init = function() {
     alert('Whaaaaat?');
-  },
-  start: function() {
-    this.newStudentForm.submit(this.submitHandler);
   }
 };
 
-Megatask.start();
+var roster = new Megaroster();
+roster.init();
