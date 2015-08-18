@@ -15,7 +15,7 @@ var Megaroster = function() {
       self.students = JSON.parse(localStorage.students);
       $.each(self.students, function(index, student_data) {
         var student = new Student();
-        student.init(student_data.name);
+        student.init(student_data);
         student.appendToList();
       });
     }
@@ -36,7 +36,9 @@ var Megaroster = function() {
 
   this.addStudent = function(student_name) {
     var student = new Student();
-    student.init(student_name);
+    student.init({
+      name: student_name
+    });
 
     self.students.push(student);
     student.appendToList();
@@ -46,14 +48,16 @@ var Megaroster = function() {
 
   this.init = function() {
     self.students = [];
+    Student.counter = 0;
     self.load();
 
     $(document).on('click', 'button.delete', function(ev) {
+      var li = $(this).closest('li');
+
       // Remove it from the array
+      var id = li.attr('data-id');
 
-
-      // Remove it from the <ol>
-      $(this).closest('li').remove();
+      li.remove();
 
       // Update localStorage
       // WAIT UNTIL TOMORROW
