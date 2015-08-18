@@ -43,7 +43,7 @@ var Megaroster = function() {
     self.students = [];
     self.load();
 
-    $('button.delete').on('click', function(ev) {
+    $(document).on('click', 'button.delete', function(ev) {
       // Remove it from the array
       // WAIT UNTIL TOMORROW
 
