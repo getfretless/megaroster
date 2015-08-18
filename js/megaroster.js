@@ -23,17 +23,36 @@ var Megaroster = function() {
   };
 
   this.appendToList = function(student_name) {
-    $('#students').append('<li class="list-group-item">' + student_name + '</li>');
+    // Grab the *template* list item from the page.
+    var li = $('#list_item_template').clone();
+    li.removeAttr('id')
+      .addClass('student')
+      .prepend(student_name)
+      .removeClass('hidden');
+
+    $('#students').append(li);
   };
 
   this.addStudent = function(student_name) {
     self.students.push(student_name);
     self.appendToList(student_name);
+    self.save();
   };
 
   this.init = function() {
     self.students = [];
     self.load();
+
+    $('button.delete').on('click', function(ev) {
+      // Remove it from the array
+      // WAIT UNTIL TOMORROW
+
+      // Remove it from the <ol>
+      $(this).closest('li').remove();
+
+      // Update localStorage
+      // WAIT UNTIL TOMORROW
+    });
 
     $('#new_student_form').on('submit', function (ev) {
       ev.preventDefault();
@@ -46,7 +65,6 @@ var Megaroster = function() {
         .focus();
     });
   };
-
 };
 
 var roster = new Megaroster();
