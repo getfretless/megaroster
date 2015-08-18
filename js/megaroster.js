@@ -13,8 +13,10 @@ var Megaroster = function() {
   this.load = function() {
     try {
       self.students = JSON.parse(localStorage.students);
-      $.each(self.students, function(index, student_name) {
-        self.appendToList(student_name);
+      $.each(self.students, function(index, student_data) {
+        var student = new Student();
+        student.init(student_data.name);
+        student.appendToList();
       });
     }
     catch(err) {
@@ -22,20 +24,23 @@ var Megaroster = function() {
     }
   };
 
-  this.appendToList = function(student_name) {
-    // Grab the *template* list item from the page.
-    var li = $('#list_item_template').clone();
-    li.removeAttr('id')
-      .addClass('student')
-      .prepend(student_name)
-      .removeClass('hidden');
-
-    $('#students').append(li);
-  };
+  // this.appendToList = function(student_name) {
+  //   var li = $('#list_item_template').clone();
+  //   li.removeAttr('id')
+  //     .addClass('student')
+  //     .prepend(student_name)
+  //     .removeClass('hidden');
+  //
+  //   $('#students').append(li);
+  // };
 
   this.addStudent = function(student_name) {
-    self.students.push(student_name);
-    self.appendToList(student_name);
+    var student = new Student();
+    student.init(student_name);
+
+    self.students.push(student);
+    student.appendToList();
+
     self.save();
   };
 
@@ -45,7 +50,7 @@ var Megaroster = function() {
 
     $(document).on('click', 'button.delete', function(ev) {
       // Remove it from the array
-      // WAIT UNTIL TOMORROW
+
 
       // Remove it from the <ol>
       $(this).closest('li').remove();
