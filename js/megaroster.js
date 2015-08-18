@@ -12,11 +12,12 @@ var Megaroster = function() {
 
   this.load = function() {
     try {
-      self.students = JSON.parse(localStorage.students);
-      $.each(self.students, function(index, student_data) {
+      var student_data_objects = JSON.parse(localStorage.students);
+      $.each(student_data_objects, function(index, student_data) {
         var student = new Student();
         student.init(student_data);
         student.appendToList();
+        self.students.push(student);
       });
     }
     catch(err) {
@@ -57,10 +58,16 @@ var Megaroster = function() {
       // Remove it from the array
       var id = li.attr('data-id');
 
-      li.remove();
+      $.each(self.students, function(index, current_student) {
+        if (current_student.id.toString() === id.toString()) {
+          self.students.splice(index, 1);
+          return false;
+        }
+      });
 
-      // Update localStorage
-      // WAIT UNTIL TOMORROW
+      li.remove();
+      self.save();
+
     });
 
     $('#new_student_form').on('submit', function (ev) {

@@ -4,9 +4,15 @@ var Student = function() {
   self.getOrSetId = function(id) {
     if (!id) {
       id = Student.counter + 1;
-      Student.counter ++; // TODO: We must fix this eventually.
     }
+    self.incrementCounter(id);
     return id;
+  };
+
+  self.incrementCounter = function(id) {
+    if (id > Student.counter) {
+      Student.counter = id;
+    }
   };
 
   self.init = function (properties) {
@@ -24,4 +30,15 @@ var Student = function() {
 
     $('#students').append(li);
   };
+};
+
+Student.getStudentById = function(id) {
+  var student;
+  $.each(roster.students, function(index, current_student) {
+    if (current_student.id.toString() === id.toString()) {
+      student = current_student;
+      return false;
+    }
+  });
+  return student;
 };
