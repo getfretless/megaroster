@@ -63,12 +63,38 @@ var Megaroster = function() {
     li.append(edit_form);
   };
 
+  this.removeEditForm = function(ev) {
+    var li, edit_form, label;
+    li = $(this).closest('li');
+    label = li.find('label');
+
+    edit_form = $(this).closest('form');
+    edit_form.remove();
+
+    label.removeClass('hidden');
+    li.find('.btn-group').removeClass('hidden');
+  };
+
+  this.updateStudent = function(ev) {
+    ev.preventDefault();
+    var form = this;
+
+    var id = $(this).closest('li').attr('data-id');
+    var student = Student.getStudentById(id);
+    student.name = this.student_name.value;
+
+    self.removeEditForm.apply(form);
+    self.save();
+  };
+
   this.init = function() {
     self.students = [];
     Student.counter = 0;
     self.load();
 
     $(document).on('click', 'button.edit', self.createEditForm);
+    $(document).on('click', 'button.cancel', self.removeEditForm);
+    $(document).on('submit', 'form.edit', self.updateStudent);
 
     $(document).on('click', 'button.delete', function(ev) {
       var li = $(this).closest('li');
