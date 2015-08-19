@@ -61,6 +61,11 @@ var Megaroster = function() {
     label.addClass('hidden');
     li.find('.btn-group').addClass('hidden');
     li.append(edit_form);
+
+    edit_form.find('input[name=student_name]')
+      .val(label.text())
+      .focus()
+      .select();
   };
 
   this.removeEditForm = function(ev) {
@@ -82,6 +87,8 @@ var Megaroster = function() {
     var id = $(this).closest('li').attr('data-id');
     var student = Student.getStudentById(id);
     student.name = this.student_name.value;
+
+    $(form).siblings('label').text(student.name);
 
     self.removeEditForm.apply(form);
     self.save();
