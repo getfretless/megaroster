@@ -14,9 +14,8 @@ var Megaroster = function() {
     try {
       var student_data_objects = JSON.parse(localStorage.students);
       $.each(student_data_objects, function(index, student_data) {
-        var student = new Student();
-        student.init(student_data);
-        student.appendToList();
+        Student.init(student_data);
+        Student.appendToList();
         self.students.push(student);
       });
     }
@@ -36,13 +35,12 @@ var Megaroster = function() {
   // };
 
   this.addStudent = function(student_name) {
-    var student = new Student();
-    student.init({
+    Student.init({
       name: student_name
     });
-
-    self.students.push(student);
-    student.appendToList();
+    debugger;
+    self.students.push(Student);
+    Student.appendToList();
 
     self.save();
   };
@@ -56,10 +54,10 @@ var Megaroster = function() {
     edit_form = $('#edit_form_template')
       .clone()
       .removeAttr('id')
-      .removeClass('hidden');
+      .removeClass('invisible');
 
     label.addClass('hidden');
-    li.find('.btn-group').addClass('hidden');
+    li.find('.btn-group').addClass('invisible');
     li.append(edit_form);
 
     edit_form.find('input[name=student_name]')
