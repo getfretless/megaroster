@@ -1,0 +1,38 @@
+section {
+  margin-top: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 0;
+}
+
+.btn-group {
+  transition: 0.3s;
+  opacity: 0;
+}
+
+.btn {
+  transition: 0.15s;
+}
+
+.list-group-item {
+  transition: 0.3s;
+}
+
+.list-group-item::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.list-group-item > span {
+  line-height: 31px;
+}
+
+.list-group-item:hover {
+  background-color: WhiteSmoke;
+}
+
+.list-group-item:hover .btn-group {
+  opacity: 1;
+}
