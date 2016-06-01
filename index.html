@@ -29,61 +29,37 @@
       <div class="row">
         <div class="col-md-6 col-md-offset-3">
           <div class="card">
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">
-                <span>Cras justo odio</span>
-                <div class="btn-group pull-sm-right">
-                  <button type="button" class="btn btn-warning-outline btn-sm edit">
-                    <i class="fa fa-pencil" aria-hidden="true"></i>
-                  </button>
-                  <button type="button" class="btn btn-danger-outline btn-sm delete">
-                    <i class="fa fa-trash" aria-hidden="true"></i>
-                  </button>
-                </div>
-              </li>
-              <li class="list-group-item">
-                <span>Cras justo odio</span>
-                <div class="btn-group pull-sm-right">
-                  <button type="button" class="btn btn-warning-outline btn-sm edit">
-                    <i class="fa fa-pencil" aria-hidden="true"></i>
-                  </button>
-                  <button type="button" class="btn btn-danger-outline btn-sm delete">
-                    <i class="fa fa-trash" aria-hidden="true"></i>
-                  </button>
-                </div>
-              </li>
-              <li class="list-group-item">
-                <span>Cras justo odio</span>
-                <div class="btn-group pull-sm-right">
-                  <button type="button" class="btn btn-warning-outline btn-sm edit">
-                    <i class="fa fa-pencil" aria-hidden="true"></i>
-                  </button>
-                  <button type="button" class="btn btn-danger-outline btn-sm delete">
-                    <i class="fa fa-trash" aria-hidden="true"></i>
-                  </button>
-                </div>
-              </li>
-              <li class="list-group-item">
-                <span>Cras justo odio</span>
-                <div class="btn-group pull-sm-right">
-                  <button type="button" class="btn btn-warning-outline btn-sm edit">
-                    <i class="fa fa-pencil" aria-hidden="true"></i>
-                  </button>
-                  <button type="button" class="btn btn-danger-outline btn-sm delete">
-                    <i class="fa fa-trash" aria-hidden="true"></i>
-                  </button>
-                </div>
-              </li>
+            <ul id="students" class="list-group list-group-flush">
             </ul>
           </div>
         </div>
       </div>
 
+      <li id="list_item_template" class="list-group-item invisible">
+        <span>Cras justo odio</span>
+        <div class="btn-group pull-sm-right">
+          <button type="button" class="btn btn-warning-outline btn-sm edit">
+            <i class="fa fa-pencil" aria-hidden="true"></i>
+          </button>
+          <button type="button" class="btn btn-danger-outline btn-sm delete">
+            <i class="fa fa-trash" aria-hidden="true"></i>
+          </button>
+        </div>
+      </li>
+
       <!-- EDIT form  -->
-      <form role="form" id="edit_form_template" class="form-inline edit invisible">
-        <input type="text" name="student_name" class="form-control">
-        <input type="submit" value="Save" class="btn btn-sm btn-success">
-        <button type="button" class="btn btn-sm btn-default cancel">Cancel</button>
+      <form role="form" id="edit_form_template" class="edit invisible">
+        <div class="input-group">
+          <input type="text" name="student_name" class="form-control form-control-sm">
+          <div class="input-group-btn">
+            <button class="btn btn-sm btn-primary-outline">
+              <i class="fa fa-check" aria-hidden="true"></i>
+            </button>
+            <button type="button" class="btn btn-sm btn-warning-outline cancel">
+              <i class="fa fa-times" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
       </form>
     </section>
 

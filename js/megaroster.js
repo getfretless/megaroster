@@ -14,8 +14,9 @@ var Megaroster = function() {
     try {
       var student_data_objects = JSON.parse(localStorage.students);
       $.each(student_data_objects, function(index, student_data) {
-        Student.init(student_data);
-        Student.appendToList();
+        var student = new Student();
+        student.init(student_data);
+        student.appendToList();
         self.students.push(student);
       });
     }
@@ -24,23 +25,24 @@ var Megaroster = function() {
     }
   };
 
-  // this.appendToList = function(student_name) {
-  //   var li = $('#list_item_template').clone();
-  //   li.removeAttr('id')
-  //     .addClass('student')
-  //     .prepend(student_name)
-  //     .removeClass('hidden');
-  //
-  //   $('#students').append(li);
-  // };
+  this.appendToList = function(student_name) {
+    var li = $('#list_item_template').clone();
+    li.removeAttr('id')
+      .addClass('student')
+      .prepend(student_name)
+      .removeClass('invisible');
+
+    $('#students').append(li);
+  };
 
   this.addStudent = function(student_name) {
-    Student.init({
+    var student = new Student();
+    student.init({
       name: student_name
     });
-    debugger;
-    self.students.push(Student);
-    Student.appendToList();
+
+    self.students.push(student);
+    student.appendToList();
 
     self.save();
   };
@@ -48,7 +50,7 @@ var Megaroster = function() {
   this.createEditForm = function(ev) {
     var li, edit_form, label;
     li = $(this).closest('li');
-    label = li.find('label');
+    $name = li.find('span');
 
     // append a clone of the edit_form_template to the <li>
     edit_form = $('#edit_form_template')
@@ -56,12 +58,12 @@ var Megaroster = function() {
       .removeAttr('id')
       .removeClass('invisible');
 
-    label.addClass('hidden');
+    $name.addClass('invisible');
     li.find('.btn-group').addClass('invisible');
     li.append(edit_form);
 
     edit_form.find('input[name=student_name]')
-      .val(label.text())
+      .val($name.text())
       .focus()
       .select();
   };
@@ -69,13 +71,13 @@ var Megaroster = function() {
   this.removeEditForm = function(ev) {
     var li, edit_form, label;
     li = $(this).closest('li');
-    label = li.find('label');
+    label = li.find('span');
 
     edit_form = $(this).closest('form');
     edit_form.remove();
 
-    label.removeClass('hidden');
-    li.find('.btn-group').removeClass('hidden');
+    label.removeClass('invisible');
+    li.find('.btn-group').removeClass('invisible');
   };
 
   this.updateStudent = function(ev) {
@@ -86,7 +88,7 @@ var Megaroster = function() {
     var student = Student.getStudentById(id);
     student.name = this.student_name.value;
 
-    $(form).siblings('label').text(student.name);
+    $(form).siblings('span').text(student.name);
 
     self.removeEditForm.apply(form);
     self.save();

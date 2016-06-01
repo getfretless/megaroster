@@ -15,8 +15,14 @@ section {
   transition: 0.15s;
 }
 
+.btn-sm {
+  padding: .26rem .75rem;
+}
+
 .list-group-item {
   transition: 0.3s;
+  overflow: hidden;
+  position: relative;
 }
 
 .list-group-item::after {
@@ -25,12 +31,22 @@ section {
   clear: both;
 }
 
+.list-group-item:hover {
+  background-color: whitesmoke;
+}
+
 .list-group-item > span {
   line-height: 31px;
 }
 
-.list-group-item:hover {
-  background-color: WhiteSmoke;
+.list-group-item > form {
+  position: absolute;
+  background-color: whitesmoke;
+  top: 0;
+  left: 0;
+  padding: .75rem 1.25rem;
+  width: 100%;
+  z-index: 10;
 }
 
 .list-group-item:hover .btn-group {
