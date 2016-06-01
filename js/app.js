@@ -1,33 +1,51 @@
-var App = {
+var app = {
   init: function() {
-    $(document).on('click', 'button.edit', this.toggleForm);
-    $(document).on('click', 'button.cancel', this.toggleForm);
-    $('#new_student_form').on('submit', this.handleNewStudent);
+    document.querySelector('form').onsubmit = this.handleSubmit;
   },
 
-  toggleForm: function() {
-    var $li = $(this).closest('li');
-    if($li.find('form').length > 0) {
-      $(this).closest('form').remove();
+  handleSubmit: function(event) {
+    event.preventDefault();
+    var item = app.buildListItem(event.target.name.value);
+    app.createOrPrependList(item);
+    event.target.reset();
+  },
+
+  createOrPrependList: function(item) {
+    if (document.querySelector('ul') !== null) {
+      var list = document.querySelector('ul');
+      list.insertBefore(item, list.firstChild);
     } else {
-      var $editClone = $('#edit_form_template').clone().removeAttr('id').removeClass('invisible');
-      $li.append($editClone);
-      $editClone.find('input[name=student_name]').val($li.find('span').text()).focus().select();
+      var list = document.createElement('ul');
+      list.insertBefore(item, list.firstChild);
+      document.querySelector('section').appendChild(list);
     }
   },
 
-  handleNewStudent: function(event) {
-    event.preventDefault();
-    var data = {
-      id: Megaroster.students.length + 1,
-      name: event.target.student_name.value
-    };
-    Student.add(data);
-    Megaroster.addStudent(data)
-    $(event.target.student_name).val('').focus();
+  buildListItem: function(name) {
+    var item = document.createElement('li');
+
+    item.innerText = name;
+
+    item.appendChild(app.addLink({
+      text: 'promote',
+      method: student.promote
+    }));
+
+    item.appendChild(app.addLink({
+      text: 'destroy',
+      method: student.destroy
+    }));
+
+    return item;
+  },
+
+  addLink: function(data) {
+    var link = document.createElement('a');
+    link.href = '#'
+    link.innerText = data.text;
+    link.onclick = data.method;
+    return link;
   }
 }
 
-$(function(){
-  App.init();
-});
+app.init();
