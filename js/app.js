@@ -7,7 +7,6 @@ var App = {
 
   toggleForm: function() {
     var $li = $(this).closest('li');
-
     if($li.find('form').length > 0) {
       $(this).closest('form').remove();
     } else {
@@ -19,13 +18,12 @@ var App = {
 
   handleNewStudent: function(event) {
     event.preventDefault();
-    var name = event.target.student_name.value;
-    var studentId = Megaroster.students.length + 1;
-    Student.add(studentId, name);
-    Megaroster.addStudent({
-      id: studentId,
-      name: name
-    })
+    var data = {
+      id: Megaroster.students.length + 1,
+      name: event.target.student_name.value
+    };
+    Student.add(data);
+    Megaroster.addStudent(data)
     $(event.target.student_name).val('').focus();
   }
 }

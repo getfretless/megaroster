@@ -9,7 +9,7 @@ var Megaroster = {
     try {
       JSON.parse(localStorage.students).map(function(student){
         this.students.push(student);
-        Student.add(student.id, student.name);
+        Student.add(student);
       }.bind(this));
     }
     catch(err) {
@@ -28,11 +28,17 @@ var Megaroster = {
 
   update: function(data) {
     this.students = this.students.map(function(student){
-      if(student.id == data.id) {
-        return {
+      if (student.id == data.id) {
+        var newStudent = {
           id: student.id,
-          name: data.name
+          name: data.name || student.name
         }
+        if (data.favorite !== undefined) {
+          newStudent.favorite = data.favorite;
+        } else {
+          newStudent.favorite = student.favorite ? true : false;
+        }
+        return newStudent;
       }
       return student;
     });
@@ -42,7 +48,8 @@ var Megaroster = {
   addStudent: function(student) {
     this.students.push({
       id: student.id,
-      name: student.name
+      name: student.name,
+      favorite: false
     })
     this.save();
   },

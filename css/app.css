@@ -2,6 +2,11 @@ section {
   margin-top: 1.5rem;
 }
 
+li.favorite {
+  border-color: #66afe9;
+  background-color: rgba(102,175,233,0.25);
+}
+
 .form-group {
   margin-bottom: 0;
 }
@@ -31,7 +36,11 @@ section {
   clear: both;
 }
 
-.list-group-item:hover {
+.list-group-item.favorite:hover {
+  background-color: rgba(102,175,233,0.5);
+}
+
+.list-group-item:not(.favorite):hover {
   background-color: whitesmoke;
 }
 
