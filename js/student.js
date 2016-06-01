@@ -1,7 +1,12 @@
 var student = {
   promote: function(event) {
     event.preventDefault();
-    event.target.parentNode.classList.add('promoted');
+    var parent = event.target.parentNode
+    if (parent.className === 'promoted') {
+      parent.className = '';
+    } else {
+      parent.className = 'promoted';
+    }
   },
 
   destroy: function(event) {
