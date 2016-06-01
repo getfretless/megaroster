@@ -4,72 +4,19 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Megaroster</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/app.css">
   </head>
   <body>
-    <section class="container-fluid">
-      <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-          <div class="card">
-            <h5 class="card-header">Megaroster</h5>
-            <div class="card-block">
-              <form id="new_student_form">
-                <fieldset class="form-group">
-                  <label for="name" class="sr-only">Student Name</label>
-                  <input type="text" name="student_name" class="form-control" id="student_name" placeholder="Enter Student Name" required>
-                  <p class="text-muted text-xs-right font-italic"><small>Press enter to submit form.</small></p>
-                </fieldset>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-          <div class="card">
-            <ul id="students" class="list-group list-group-flush">
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <li id="list_item_template" class="list-group-item invisible">
-        <span></span>
-        <div class="btn-group pull-sm-right">
-          <button type="button" class="btn btn-primary-outline btn-sm edit">
-            <i class="fa fa-pencil" aria-hidden="true"></i>
-          </button>
-          <button type="button" class="btn btn-warning-outline btn-sm favorite">
-            <i class="fa fa-star" aria-hidden="true"></i>
-          </button>
-          <button type="button" class="btn btn-danger-outline btn-sm delete">
-            <i class="fa fa-trash" aria-hidden="true"></i>
-          </button>
-        </div>
-      </li>
-
-      <!-- EDIT form  -->
-      <form role="form" id="edit_form_template" class="edit invisible">
-        <div class="input-group">
-          <input type="text" name="student_name" class="form-control form-control-sm">
-          <div class="input-group-btn">
-            <button class="btn btn-sm btn-success-outline">
-              <i class="fa fa-check" aria-hidden="true"></i>
-            </button>
-            <button type="button" class="btn btn-sm btn-warning-outline cancel">
-              <i class="fa fa-times" aria-hidden="true"></i>
-            </button>
-          </div>
-        </div>
+    <section>
+      <form>
+        <fieldset>
+          <label for="name">Student Name</label>
+          <input name="name" id="name" placeholder="Enter Student Name" autocomplete="off" required>
+          <button>Add Student</button>
+        </fieldset>
       </form>
     </section>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js" integrity="sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7" crossorigin="anonymous"></script>
-    <script src="js/app.js"></script>
     <script src="js/student.js"></script>
-    <script src="js/megaroster.js"></script>
+    <script src="js/app.js"></script>
   </body>
 </html>
