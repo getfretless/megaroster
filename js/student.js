@@ -17,7 +17,7 @@ var Student = {
       $li.addClass('favorite');
     }
 
-    $('#students').append($li);
+    $('#students').prepend($li);
   },
 
   delete: function(event) {
