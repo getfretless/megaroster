@@ -1,44 +1,42 @@
-var Student = function() {
-  var self = this;
+var Student = {
+  init: function() {
+    $(document).on('submit', 'form.edit', this.update);
+    $(document).on('click', 'button.delete', this.delete);
+  },
 
-  self.getOrSetId = function(id) {
-    if (!id) {
-      id = Student.counter + 1;
-    }
-    self.incrementCounter(id);
-    return id;
-  };
-
-  self.incrementCounter = function(id) {
-    if (id > Student.counter) {
-      Student.counter = id;
-    }
-  };
-
-  self.init = function (properties) {
-    self.name = properties.name;
-    self.id = self.getOrSetId(properties.id);
-  };
-
-  self.appendToList = function() {
+  add: function(id, name) {
     var $li = $('#list_item_template').clone();
     $li.removeAttr('id')
-      .attr('data-id', self.id)
+      .addClass('student')
+      .attr('data-id', id)
       .removeClass('invisible')
       .find('span')
-        .text(self.name);
+        .text(name);
 
     $('#students').append($li);
-  };
-};
+  },
 
-Student.getStudentById = function(id) {
-  var student;
-  $.each(roster.students, function(index, current_student) {
-    if (current_student.id.toString() === id.toString()) {
-      student = current_student;
-      return false;
-    }
-  });
-  return student;
-};
+  delete: function(event) {
+    var $li = $(event.target).closest('li');
+    var id = $li.attr('data-id');
+
+    Megaroster.removeStudent(id);
+    $li.remove();
+  },
+
+  update: function(event) {
+    event.preventDefault();
+    var form = event.target;
+    var id = $(form).closest('li').attr('data-id');
+    Megaroster.update({
+      id: id,
+      name: form.student_name.value
+    });
+
+    $(form).siblings('span').text(form.student_name.value);
+
+    App.toggleForm.apply(this);
+  }
+}
+
+Student.init();
