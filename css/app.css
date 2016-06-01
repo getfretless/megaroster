@@ -1,0 +1,54 @@
+section {
+  margin-top: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 0;
+}
+
+.btn-group {
+  transition: 0.3s;
+  opacity: 0;
+}
+
+.btn {
+  transition: 0.15s;
+}
+
+.btn-sm {
+  padding: .27rem .75rem;
+}
+
+.list-group-item {
+  transition: 0.3s;
+  overflow: hidden;
+  position: relative;
+}
+
+.list-group-item::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.list-group-item:hover {
+  background-color: whitesmoke;
+}
+
+.list-group-item > span {
+  line-height: 31px;
+}
+
+.list-group-item > form {
+  position: absolute;
+  background-color: whitesmoke;
+  top: 0;
+  left: 0;
+  padding: .75rem 1.25rem;
+  width: 100%;
+  z-index: 10;
+}
+
+.list-group-item:hover .btn-group {
+  opacity: 1;
+}
