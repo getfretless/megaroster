@@ -7,11 +7,13 @@ var student = {
     } else {
       parent.className = 'promoted';
     }
+    app.updateList();
   },
 
   destroy: function(event) {
     event.preventDefault();
     item = event.target.parentNode
     item.parentNode.removeChild(item);
+    app.updateList();
   }
 }
