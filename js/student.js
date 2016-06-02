@@ -1,4 +1,4 @@
-var student = {
+var Student = {
   promote: function(event) {
     event.preventDefault();
     $(event.target).parent().toggleClass('promoted');

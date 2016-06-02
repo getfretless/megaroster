@@ -20,8 +20,8 @@ var App = {
   },
 
   buildListItem: function(name) {
-    var $promote = App.addLink({ text: 'promote', method: student.promote });
-    var $destroy = App.addLink({ text: 'destroy', method: student.destroy });
+    var $promote = App.addLink({ text: 'promote', method: Student.promote });
+    var $destroy = App.addLink({ text: 'destroy', method: Student.destroy });
 
     return $('<li>'+name+'</li>').append($promote).append($destroy);
   },
