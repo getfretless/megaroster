@@ -1,51 +1,34 @@
-var app = {
+var App = {
   init: function() {
-    document.querySelector('form').onsubmit = this.handleSubmit;
+    $('form').on('submit', this.handleSubmit);
   },
 
   handleSubmit: function(event) {
-    event.preventDefault();
-    var item = app.buildListItem(event.target.name.value);
-    app.createOrPrependList(item);
+    var item = App.buildListItem(event.target.name.value);
+    App.createOrPrependList(item);
+
     event.target.reset();
+    event.preventDefault();
   },
 
   createOrPrependList: function(item) {
-    if (document.querySelector('ul') !== null) {
-      var list = document.querySelector('ul');
-      list.insertBefore(item, list.firstChild);
+    if ($('ul').length) {
+      $('ul').prepend(item);
     } else {
-      var list = document.createElement('ul');
-      list.insertBefore(item, list.firstChild);
-      document.querySelector('section').appendChild(list);
+      $('section').append($('<ul/>').prepend(item));
     }
   },
 
   buildListItem: function(name) {
-    var item = document.createElement('li');
+    var $promote = App.addLink({ text: 'promote', method: student.promote });
+    var $destroy = App.addLink({ text: 'destroy', method: student.destroy });
 
-    item.innerText = name;
-
-    item.appendChild(app.addLink({
-      text: 'promote',
-      method: student.promote
-    }));
-
-    item.appendChild(app.addLink({
-      text: 'destroy',
-      method: student.destroy
-    }));
-
-    return item;
+    return $('<li>'+name+'</li>').append($promote).append($destroy);
   },
 
   addLink: function(data) {
-    var link = document.createElement('a');
-    link.href = '#'
-    link.innerText = data.text;
-    link.onclick = data.method;
-    return link;
+    return $('<a href="#"/>').text(data.text).on('click', data.method);
   }
 }
 
-app.init();
+App.init();
